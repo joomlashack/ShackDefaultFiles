@@ -63,9 +63,20 @@
 }
 
 /* Joomla 2 only */
-.ost-alert-gopro.ost-joomla-2{
+.ost-alert-gopro.ost-joomla-2 {
     margin-left: 0;
     display: inline-block;
+}
+
+.ost-alert-gopro.ost-joomla-2.no_offset a {
+    display: inline-block;
+    margin-top: -30px;
+    margin-right: 20px;
+}
+
+.ost-alert-gopro.ost-joomla-2.no_offset span {
+    padding-top: 22px;
+    margin-left: 20px;
 }
 
 @media (max-width: 480px) {
