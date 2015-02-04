@@ -39,7 +39,7 @@ class JFormFieldJEDLink extends JFormField
         }
 
         $html .= '<div class="ost-jedlink ' . $this->class . ' ' . $classJoomlaVersion . ' ' . ($this->fromInstaller ? 'no_offset':'') . '">
-            Like this extension? <a href="' . $this->url . '" class="" target="_blank">
+            Like this extension? <a href="' . $this->element['url'] . '" class="" target="_blank">
                 Leave a review on the JED
             </a>
             <i class="icon-star"></i>
