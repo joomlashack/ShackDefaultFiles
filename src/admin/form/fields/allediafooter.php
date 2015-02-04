@@ -46,11 +46,14 @@ class JFormFieldAllediaFooter extends JFormFieldBase
 
         // JED Link
         $jedUrl = $this->getAttribute('jedurl');
-        $html .= "<div class=\"alledia-jedlink\">";
-        $html .= "Like this extension? ";
-        $html .= "<a href=\"{$jedUrl}\" target=\"_blank\">Leave a review on the JED</a>&nbsp;";
-        $html .= str_repeat("<i class=\"icon-star\"></i>", 5);
-        $html .= "</div>";
+
+        if (!empty($jedUrl)) {
+            $html .= "<div class=\"alledia-jedlink\">";
+            $html .= "Like this extension? ";
+            $html .= "<a href=\"{$jedUrl}\" target=\"_blank\">Leave a review on the JED</a>&nbsp;";
+            $html .= str_repeat("<i class=\"icon-star\"></i>", 5);
+            $html .= "</div>";
+        }
 
         // Powered by
         $html .= "<div class=\"poweredby\">Powered by ";
