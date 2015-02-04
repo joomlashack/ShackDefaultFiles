@@ -37,7 +37,7 @@ class JFormFieldJEDLink extends JFormField
             $style = file_get_contents($cssPath);
             $html .= '<style>' . $style . '</style>';
         }
-        var_dump($this);
+
         $html .= '<div class="ost-jedlink ' . $this->class . ' ' . $classJoomlaVersion . ' ' . ($this->fromInstaller ? 'no_offset':'') . '">
             Like this extension? <a href="' . $this->url . '" class="" target="_blank">
                 Leave a review on the JED
