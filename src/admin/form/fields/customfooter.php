@@ -13,7 +13,7 @@ require_once "base.php";
 /**
  * Form field to show an advertisement for the pro version
  */
-class JFormFieldAllediaFooter extends JFormFieldBase
+class JFormFieldCustomFooter extends JFormFieldBase
 {
     protected function getInput()
     {
@@ -23,10 +23,10 @@ class JFormFieldAllediaFooter extends JFormFieldBase
         $mediaURI  = JURI::root() . 'media/' . $this->getAttribute('media');
         $logoURL   = $mediaURI . "/images/alledia_logo.png";
 
-        $html .= $this->getStyle($mediaPath . '/css/field_allediafooter.css');
+        $html .= $this->getStyle($mediaPath . '/css/field_customfooter.css');
 
         if (version_compare(JVERSION, '3.0', 'lt')) {
-            $html .= $this->getStyle($mediaPath . '/css/field_allediafooter.j25.css');
+            $html .= $this->getStyle($mediaPath . '/css/field_customfooter.j25.css');
         }
 
         if ($this->fromInstaller) {
