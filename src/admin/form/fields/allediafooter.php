@@ -73,10 +73,12 @@ class JFormFieldAllediaFooter extends JFormFieldBase
             <script>
                 var footer = document.getElements('.alledia-footer')[0];
 
-                if (footer.parentElement.tagName === 'LI') {
-                    var wrapper = document.getElementById('element-box');
+                if (footer.parentElement.tagName === 'LI'
+                    || footer.parentElement.parentElement.id === 'element-box') {
 
-                    wrapper.parentNode.insertBefore(footer, wrapper.nextSibling);
+                    var wrapper = document.getElementById('element-box').parentNode.parentNode;
+
+                    wrapper.insertBefore(footer, wrapper.nextSibling);
                 }
             </script>";
         } else {
