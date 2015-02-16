@@ -7,7 +7,7 @@
         </div>
         <br />
         <div>
-            OSMeta is built by&nbsp;
+            Powered by&nbsp;
             <a href="https://www.alledia.com">Alledia</a>
         </div>
     </div>
