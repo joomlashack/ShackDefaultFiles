@@ -1,7 +1,7 @@
 <?php
 /**
  * @package   AllediaFreeDefaultFiles
- * @copyright 2015 Alledia.com, All rights reserved.
+ * @copyright 2016 Alledia.com, All rights reserved.
  * @author    Alledia <support@alledia.com>
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  */
