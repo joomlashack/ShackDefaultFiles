@@ -24,6 +24,7 @@ class JFormFieldCustomFooter extends JFormFieldBase
         $logoURL   = $mediaURI . "/images/joomlashack-logo-150x38.png";
 
         $html .= $this->getStyle($mediaPath . '/css/field_customfooter.css');
+        $html .= $this->getStyle($mediaPath . '/css/admin-default.css');
 
         if ($this->fromInstaller) {
             $this->class .= ' installer';
