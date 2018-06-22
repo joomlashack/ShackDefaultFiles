@@ -13,19 +13,21 @@ defined('_JEXEC') or die('Restricted access');
  */
 class JFormFieldBase extends JFormField
 {
-    public $fromInstaller = false;
+    /**
+     * @var bool
+     */
+    protected $fromInstaller = false;
 
-    protected $class = '';
-
-    protected $media;
-
-    protected $attributes;
-
-    protected $element;
-
-    public function __construct()
+    public function __set($property, $value = null)
     {
-        $this->element = new stdClass;
+        switch ($property) {
+            case 'fromInstaller':
+                $this->fromInstaller = (bool)$value;
+                break;
+
+            default:
+                parent::__set($property, $value);
+        }
     }
 
     protected function getInput()
@@ -39,7 +41,7 @@ class JFormFieldBase extends JFormField
 
         if (file_exists($path)) {
             $style = file_get_contents($path);
-            $html .= '<style>' . $style . '</style>';
+            $html  .= '<style>' . $style . '</style>';
         }
 
         return $html;
@@ -50,40 +52,11 @@ class JFormFieldBase extends JFormField
         return '';
     }
 
-    public function getInputUsingCustomElement($element)
+    public function getInputUsingCustomElement(SimpleXMLElement $element)
     {
         $this->element = $element;
+        $this->setup($element, null);
 
         return $this->getInput();
-    }
-
-    /**
-     * Method to get an attribute of the field
-     * The JFormField in Joomla 3 already has this method, but we are
-     * copying here for Joomla 2.5 compatibility.
-     *
-     * @param   string  $name     Name of the attribute to get
-     * @param   mixed   $default  Optional value to return if attribute not found
-     *
-     * @return  mixed             Value of the attribute / default
-     *
-     * @since   3.2
-     */
-    public function getAttribute($name, $default = null)
-    {
-        if ($this->element instanceof SimpleXMLElement) {
-            $attributes = $this->element->attributes();
-
-            // Ensure that the attribute exists
-            if (property_exists($attributes, $name)) {
-                $value = $attributes->$name;
-
-                if ($value !== null) {
-                    return (string) $value;
-                }
-            }
-        }
-
-        return $default;
     }
 }
