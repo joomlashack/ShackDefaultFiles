@@ -48,7 +48,11 @@ class JFormFieldCustomFooter extends JFormFieldBase
             )
         );
 
-        $showGoproAd = (string)$this->element['showgoproad'] ?: 0;
+        $goProUrl    = (string)$this->element['showgoproad'] ?: '0';
+        $showGoProAd = !($goProUrl == '0' || $goProUrl == 'false');
+        if ($showGoProAd && !filter_var($goProUrl, FILTER_VALIDATE_URL)) {
+            $goProUrl = 'https://www.joomlashack.com/plans';
+        }
 
         $displayData = array_merge(
             $displayData,
@@ -59,7 +63,8 @@ class JFormFieldCustomFooter extends JFormFieldBase
                 'jshome'        => (string)$this->element['jshome'] ?: 'https://www.joomlashack.com',
                 'jedurl'        => (string)$this->element['jedurl'],
                 'fromInstaller' => $this->fromInstaller,
-                'showGoproAd'   => !($showGoproAd == 0 || $showGoproAd == 'false')
+                'showGoProAd'   => $showGoProAd,
+                'goProUrl'      => $goProUrl
             )
         );
 

@@ -30,25 +30,27 @@ defined('_JEXEC') or die();
 $class         = $displayData['class'];
 $media         = $displayData['media'];
 $jslogo        = $media . '/' . $displayData['jslogo'];
-$jshome        = $displayData['jshome'];
 $jedurl        = $displayData['jedurl'];
-$showGoPro     = $displayData['showGoproAd'];
+$showGoProAd     = $displayData['showGoProAd'];
+$goProUrl      = $displayData['goProUrl'];
 $fromInstaller = $displayData['fromInstaller'];
 
-JHtml::_('stylesheet', $media . '/field_customfooter.css', array('relative' => true));
-JHtml::_('stylesheet', $media . '/admin-default.css', array('relative' => true));
+$footerCss = JHtml::_('stylesheet', $media . '/field_customfooter.css', array('relative' => true, 'pathOnly' => true));
+$adminCss  = JHtml::_('stylesheet', $media . '/admin-default.css', array('relative' => true, 'pathOnly' => true));
 
 ?>
+<link href="<?php echo $footerCss; ?>" rel="stylesheet"/>
+<link href="<?php echo $adminCss; ?>" rel="stylesheet"/>
 <div class="<?php echo $class; ?>">
     <div class="span-12">
         <?php
-        if ($showGoPro) :
+        if ($showGoProAd) :
             ?>
             <div class="gopro-ad">
                 <?php
                 echo JHtml::_(
                     'link',
-                    $jshome,
+                    $goProUrl,
                     '<i class="icon-publish"></i>' . JText::_('JOOMLASHACK_FOOTER_GO_PRO_MORE_FEATURES'),
                     'class="gopto-btn" target="_blank"'
                 );
@@ -81,7 +83,7 @@ JHtml::_('stylesheet', $media . '/admin-default.css', array('relative' => true))
             echo JHtml::_(
                 'link',
                 'https://www.joomlashack.com',
-                JHtml::_('image', $media . '/' . $jslogo, 'Joomlashack', 'class="joomlashack-logo" width="150"', true),
+                JHtml::_('image', $jslogo, 'Joomlashack', 'class="joomlashack-logo" width="150"', true),
                 'target="_blank"'
             );
             ?>
