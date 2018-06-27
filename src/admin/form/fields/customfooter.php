@@ -24,7 +24,7 @@ class JFormFieldCustomFooter extends JFormFieldBase
 
     protected function getLayoutPaths()
     {
-        return array_merge(array(__DIR__ . '/layouts', parent::getLayoutPaths()));
+        return array_merge(array(__DIR__ . '/layouts'), parent::getLayoutPaths());
     }
 
     protected function getLayoutData()
