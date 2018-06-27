@@ -22,9 +22,15 @@ class JFormFieldCustomFooter extends JFormFieldBase
         return $this->getRenderer($this->layout)->render($this->getLayoutData());
     }
 
-    protected function getLayoutPaths()
+    protected function getRenderer($layoutId = 'default')
     {
-        return array_merge(array(__DIR__ . '/layouts'), parent::getLayoutPaths());
+        $renderer = parent::getRenderer($layoutId);
+
+        if ($layoutId == $this->layout) {
+            $renderer->addIncludePath(__DIR__ . '/layouts');
+        }
+
+        return $renderer;
     }
 
     protected function getLayoutData()
