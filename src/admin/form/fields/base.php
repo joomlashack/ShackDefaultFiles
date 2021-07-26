@@ -6,12 +6,14 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
+use Joomla\CMS\Form\FormField;
+
 defined('_JEXEC') or die('Restricted access');
 
 /**
  * Form field to show an advertisement for the pro version
  */
-class JFormFieldBase extends JFormField
+class JFormFieldBase extends FormField
 {
     /**
      * @var bool
@@ -35,24 +37,34 @@ class JFormFieldBase extends JFormField
         return '';
     }
 
-    protected function getStyle($path)
+    /**
+     * @param ?string $path
+     *
+     * @return string
+     */
+    protected function getStyle(?string $path): string
     {
-        $html = '';
-
-        if (file_exists($path)) {
-            $style = file_get_contents($path);
-            $html  .= '<style>' . $style . '</style>';
+        if ($path && is_file($path)) {
+            return '<style>' . file_get_contents($path) . '</style>';
         }
 
-        return $html;
+        return '';
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getLabel()
     {
         return '';
     }
 
-    public function getInputUsingCustomElement(SimpleXMLElement $element)
+    /**
+     * @param SimpleXMLElement $element
+     *
+     * @return ?string
+     */
+    public function getInputUsingCustomElement(SimpleXMLElement $element): ?string
     {
         $this->element = $element;
         $this->setup($element, null);

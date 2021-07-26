@@ -6,16 +6,26 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
-defined('_JEXEC') or die('Restricted access');
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die('');
+
 ?>
 <div class="row-fluid">
     <div id="footer" class="span12">
         <div>
             <a href="https://www.joomlashack.com">
-                <img src="../media/<?php echo $this->option; ?>/images/joomlashack-logo.png" width="150" />
+                <?php
+                echo HTMLHelper::_(
+                    'image',
+                    $this->option . '/joomlashack-logo.png',
+                    'Joomlashack',
+                    ['width' => '150']
+                );
+                ?>
             </a>
         </div>
-        <br />
+        <br/>
         <div>
             Powered by&nbsp;
             <a href="https://www.joomlashack.com">Joomlashack</a>

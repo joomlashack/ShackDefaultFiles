@@ -6,35 +6,37 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
-defined('_JEXEC') or die('Restricted access');
+use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
-if (!class_exists('JFormFieldSpacer')) {
-    require_once JPATH_ROOT . "/libraries/joomla/form/fields/spacer.php";
-}
+defined('_JEXEC') or die();
 
-/**
- * Form field to show a subtitle for setting fields
- */
+FormHelper::loadFieldClass('Spacer');
+
 class JFormFieldSubtitle extends JFormFieldSpacer
 {
+    /**
+     * @inheritDoc
+     */
     protected function getLabel()
     {
-        $html = array();
-        $class = !empty($this->class) ? ' class="' . $this->class . '"' : '';
-        $tag   = isset($this->element['tag']) ? (string)$this->element['tag'] : 'h4';
+        $html  = [];
+        $class = $this->class ? '' : ' class="' . $this->class . '"';
+        $tag   = $this->element['tag'] ? (string)$this->element['tag'] : 'h4';
 
         $html[] = '<span class="spacer">';
         $html[] = '<span class="before"></span>';
         $html[] = '<span' . $class . '>';
 
-        if ((string) $this->element['hr'] == 'true') {
+        if ((string)$this->element['hr'] == 'true') {
             $html[] = '<hr' . $class . ' />';
         } else {
             $label = '';
 
             // Get the label text from the XML element, defaulting to the element name.
-            $text = $this->element['label'] ? (string) $this->element['label'] : (string) $this->element['name'];
-            $text = $this->translateLabel ? JText::_($text) : $text;
+            $text = $this->element['label'] ? (string)$this->element['label'] : (string)$this->element['name'];
+            $text = $this->translateLabel ? Text::_($text) : $text;
 
             // Build the class for the label.
             $class = !empty($this->description) ? 'hasTooltip' : '';
@@ -45,12 +47,12 @@ class JFormFieldSubtitle extends JFormFieldSpacer
 
             // If a description is specified, use it to build a tooltip.
             if (!empty($this->description)) {
-                JHtml::_('bootstrap.tooltip');
-                $label .= ' title="' . JHtml::tooltipText(trim($text, ':'), JText::_($this->description), 0) . '"';
+                HTMLHelper::_('bootstrap.tooltip');
+                $label .= ' title="' . HTMLHelper::tooltipText(trim($text, ':'), Text::_($this->description), 0) . '"';
             }
 
             // Add the label text and closing tag.
-            $label .= '>' . $text . '</' . $tag . '>';
+            $label  .= '>' . $text . '</' . $tag . '>';
             $html[] = $label;
         }
 

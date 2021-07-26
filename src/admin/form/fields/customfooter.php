@@ -37,10 +37,10 @@ class JFormFieldCustomFooter extends JFormFieldBase
     {
         $displayData = parent::getLayoutData();
 
-        $requiredClasses = array(
+        $requiredClasses = [
             'joomlashack-footer',
             'row-fluid'
-        );
+        ];
         if ($this->fromInstaller) {
             $requiredClasses[] = 'installer';
         }
@@ -62,7 +62,7 @@ class JFormFieldCustomFooter extends JFormFieldBase
 
         $displayData = array_merge(
             $displayData,
-            array(
+            [
                 'class'         => join(' ', $classes),
                 'media'         => $this->element['media'],
                 'jslogo'        => (string)$this->element['jslogo'] ?: 'joomlashack-logo.png',
@@ -71,7 +71,7 @@ class JFormFieldCustomFooter extends JFormFieldBase
                 'fromInstaller' => $this->fromInstaller,
                 'showGoProAd'   => $showGoProAd,
                 'goProUrl'      => $goProUrl
-            )
+            ]
         );
 
         return $displayData;
