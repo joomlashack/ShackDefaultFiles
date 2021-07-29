@@ -23,30 +23,35 @@
 
 use Joomla\CMS\Form\FormField;
 
-defined('_JEXEC') or die('Restricted access');
+defined('_JEXEC') or die();
 
 /**
- * Form field to show an advertisement for the pro version
+ * Class ShackFormFieldBase
+ *
+ * @property bool $fromInstaller
  */
-class JFormFieldBase extends FormField
+class ShackFormFieldBase extends FormField
 {
     /**
      * @var bool
      */
     protected $fromInstaller = false;
 
-    public function __set($property, $value = null)
+    public function __set($name, $value = null)
     {
-        switch ($property) {
+        switch ($name) {
             case 'fromInstaller':
                 $this->fromInstaller = (bool)$value;
                 break;
 
             default:
-                parent::__set($property, $value);
+                parent::__set($name, $value);
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getInput()
     {
         return '';

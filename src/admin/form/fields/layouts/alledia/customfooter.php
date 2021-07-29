@@ -21,6 +21,9 @@
  * along with ShackDefaultFiles.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die();
 
 /**
@@ -31,12 +34,12 @@ $class         = $displayData['class'];
 $media         = $displayData['media'];
 $jslogo        = $media . '/' . $displayData['jslogo'];
 $jedurl        = $displayData['jedurl'];
-$showGoProAd     = $displayData['showGoProAd'];
+$showGoProAd   = $displayData['showGoProAd'];
 $goProUrl      = $displayData['goProUrl'];
 $fromInstaller = $displayData['fromInstaller'];
 
-$footerCss = JHtml::_('stylesheet', $media . '/field_customfooter.css', array('relative' => true, 'pathOnly' => true));
-$adminCss  = JHtml::_('stylesheet', $media . '/admin-default.css', array('relative' => true, 'pathOnly' => true));
+$footerCss = HTMLHelper::_('stylesheet', $media . '/field_customfooter.css', ['relative' => true, 'pathOnly' => true]);
+$adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relative' => true, 'pathOnly' => true]);
 
 ?>
 <link href="<?php echo $footerCss; ?>" rel="stylesheet"/>
@@ -48,10 +51,10 @@ $adminCss  = JHtml::_('stylesheet', $media . '/admin-default.css', array('relati
             ?>
             <div class="gopro-ad">
                 <?php
-                echo JHtml::_(
+                echo HTMLHelper::_(
                     'link',
                     $goProUrl,
-                    '<i class="icon-publish"></i>' . JText::_('JOOMLASHACK_FOOTER_GO_PRO_MORE_FEATURES'),
+                    '<i class="icon-publish"></i>' . Text::_('JOOMLASHACK_FOOTER_GO_PRO_MORE_FEATURES'),
                     'class="gopto-btn" target="_blank"'
                 );
                 ?>
@@ -63,12 +66,12 @@ $adminCss  = JHtml::_('stylesheet', $media . '/admin-default.css', array('relati
             ?>
             <div class="joomlashack-jedlink">
                 <?php
-                echo JText::_('JOOMLASHACK_FOOTER_LIKE_THIS_EXTENSION');
+                echo Text::_('JOOMLASHACK_FOOTER_LIKE_THIS_EXTENSION');
                 echo '&nbsp;'
-                    . JHtml::_(
+                    . HTMLHelper::_(
                         'link',
                         $jedurl,
-                        JText::_('JOOMLASHACK_FOOTER_LEAVE_A_REVIEW_ON_JED'),
+                        Text::_('JOOMLASHACK_FOOTER_LEAVE_A_REVIEW_ON_JED'),
                         'target="_blank"'
                     );
                 echo '&nbsp;' . str_repeat("<i class=\"icon-star\"></i>", 5);
@@ -80,10 +83,10 @@ $adminCss  = JHtml::_('stylesheet', $media . '/admin-default.css', array('relati
         <div class="poweredby">
             Powered by
             <?php
-            echo JHtml::_(
+            echo HTMLHelper::_(
                 'link',
                 'https://www.joomlashack.com',
-                JHtml::_('image', $jslogo, 'Joomlashack', 'class="joomlashack-logo" width="150"', true),
+                HTMLHelper::_('image', $jslogo, 'Joomlashack', 'class="joomlashack-logo" width="150"', true),
                 'target="_blank"'
             );
             ?>
@@ -96,7 +99,7 @@ $adminCss  = JHtml::_('stylesheet', $media . '/admin-default.css', array('relati
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function(event) {
+    document.addEventListener('DOMContentLoaded', function() {
         var footer = document.getElementsByClassName('joomlashack-footer')[0],
             parent = footer.parentElement;
 

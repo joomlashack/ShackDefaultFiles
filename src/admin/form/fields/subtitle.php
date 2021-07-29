@@ -37,7 +37,7 @@ class JFormFieldSubtitle extends JFormFieldSpacer
     protected function getLabel()
     {
         $html  = [];
-        $class = $this->class ? '' : ' class="' . $this->class . '"';
+        $class = $this->class ?: sprintf(' class="%s"', $this->class);
         $tag   = $this->element['tag'] ? (string)$this->element['tag'] : 'h4';
 
         $html[] = '<span class="spacer">';
@@ -45,25 +45,28 @@ class JFormFieldSubtitle extends JFormFieldSpacer
         $html[] = '<span' . $class . '>';
 
         if ((string)$this->element['hr'] == 'true') {
-            $html[] = '<hr' . $class . ' />';
+            $html[] = '<hr' . $class . '>';
         } else {
             $label = '';
 
             // Get the label text from the XML element, defaulting to the element name.
-            $text = $this->element['label'] ? (string)$this->element['label'] : (string)$this->element['name'];
+            $text = (string)$this->element['label'] ?: (string)$this->element['name'];
             $text = $this->translateLabel ? Text::_($text) : $text;
 
             // Build the class for the label.
-            $class = !empty($this->description) ? 'hasTooltip' : '';
+            $class = $this->description ? 'hasTooltip' : '';
             $class = $this->required == true ? $class . ' required' : $class;
 
             // Add the opening label tag and main attributes attributes.
             $label .= '<' . $tag . ' id="' . $this->id . '-lbl" class="' . $class . '"';
 
-            // If a description is specified, use it to build a tooltip.
-            if (!empty($this->description)) {
+            if ($this->description) {
+                // Use description to build a tooltip.
                 HTMLHelper::_('bootstrap.tooltip');
-                $label .= ' title="' . HTMLHelper::tooltipText(trim($text, ':'), Text::_($this->description), 0) . '"';
+                $label .= sprintf(
+                    ' title="%s"',
+                    HTMLHelper::tooltipText(trim($text, ':'), Text::_($this->description), 0)
+                );
             }
 
             // Add the label text and closing tag.

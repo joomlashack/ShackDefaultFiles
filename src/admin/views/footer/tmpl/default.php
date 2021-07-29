@@ -23,7 +23,7 @@
 
 use Joomla\CMS\HTML\HTMLHelper;
 
-defined('_JEXEC') or die('');
+defined('_JEXEC') or die();
 
 ?>
 <div class="row-fluid">
@@ -42,8 +42,13 @@ defined('_JEXEC') or die('');
         </div>
         <br/>
         <div>
-            Powered by&nbsp;
-            <a href="https://www.joomlashack.com">Joomlashack</a>
+            Powered by
+            <?php echo HTMLHelper::_(
+                'link',
+                'https://www.joomlashack.com',
+                'Joomlashack',
+                ['target' => '_blank']
+            ); ?>
         </div>
     </div>
 </div>

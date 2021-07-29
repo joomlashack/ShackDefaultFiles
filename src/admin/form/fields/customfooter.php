@@ -21,22 +21,30 @@
  * along with ShackDefaultFiles.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+use Joomla\CMS\Form\FormField;
+
 defined('_JEXEC') or die();
 
 require_once __DIR__ . '/base.php';
 
-/**
- * Form field to show an advertisement for the pro version
- */
-class JFormFieldCustomFooter extends JFormFieldBase
+class JFormFieldCustomFooter extends ShackFormFieldBase
 {
+    /**
+     * @inheritdoc
+     */
     protected $layout = 'alledia.customfooter';
 
+    /**
+     * @inheritDoc
+     */
     protected function getInput()
     {
         return $this->getRenderer($this->layout)->render($this->getLayoutData());
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getRenderer($layoutId = 'default')
     {
         $renderer = parent::getRenderer($layoutId);
@@ -48,6 +56,9 @@ class JFormFieldCustomFooter extends JFormFieldBase
         return $renderer;
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getLayoutData()
     {
         $displayData = parent::getLayoutData();
@@ -75,7 +86,7 @@ class JFormFieldCustomFooter extends JFormFieldBase
             $goProUrl = 'https://www.joomlashack.com/plans';
         }
 
-        $displayData = array_merge(
+        return array_merge(
             $displayData,
             [
                 'class'         => join(' ', $classes),
@@ -88,7 +99,5 @@ class JFormFieldCustomFooter extends JFormFieldBase
                 'goProUrl'      => $goProUrl
             ]
         );
-
-        return $displayData;
     }
 }
