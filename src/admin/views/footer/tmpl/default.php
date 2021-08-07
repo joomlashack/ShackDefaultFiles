@@ -35,7 +35,8 @@ defined('_JEXEC') or die();
                     'image',
                     $this->option . '/joomlashack-logo.png',
                     'Joomlashack',
-                    ['width' => '150']
+                    ['width' => '150'],
+                    true
                 );
                 ?>
             </a>
