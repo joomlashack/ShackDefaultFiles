@@ -54,7 +54,7 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
                 echo HTMLHelper::_(
                     'link',
                     $goProUrl,
-                    '<i class="icon-publish"></i>' . Text::_('JOOMLASHACK_FOOTER_GO_PRO_MORE_FEATURES'),
+                    '<i class="icon-publish"></i>' . Text::_('SHACKDEFAULTFILES_GO_PRO'),
                     'class="gopto-btn" target="_blank"'
                 );
                 ?>
@@ -66,12 +66,12 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
             ?>
             <div class="joomlashack-jedlink">
                 <?php
-                echo Text::_('JOOMLASHACK_FOOTER_LIKE_THIS_EXTENSION');
+                echo Text::_('SHACKDEFAULTFILES_LIKE_THIS_EXTENSION');
                 echo '&nbsp;'
                     . HTMLHelper::_(
                         'link',
                         $jedurl,
-                        Text::_('JOOMLASHACK_FOOTER_LEAVE_A_REVIEW_ON_JED'),
+                        Text::_('SHACKDEFAULTFILES_LEAVE_A_REVIEW_ON_JED'),
                         'target="_blank"'
                     );
                 echo '&nbsp;' . str_repeat("<i class=\"icon-star\"></i>", 5);

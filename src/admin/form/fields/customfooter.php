@@ -21,18 +21,50 @@
  * along with ShackDefaultFiles.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 
 defined('_JEXEC') or die();
 
-require_once __DIR__ . '/base.php';
-
-class JFormFieldCustomFooter extends ShackFormFieldBase
+class JFormFieldCustomFooter extends FormField
 {
     /**
      * @inheritdoc
      */
     protected $layout = 'alledia.customfooter';
+
+    /**
+     * @var bool
+     */
+    protected $fromInstaller = false;
+
+    /**
+     * @inheritDoc
+     */
+    public function __set($name, $value = null)
+    {
+        switch ($name) {
+            case 'fromInstaller':
+                $this->fromInstaller = (bool)$value;
+                break;
+
+            default:
+                parent::__set($name, $value);
+        }
+    }
+
+    /**
+     * @inheritDoc
+     *
+     */
+    public function setup(\SimpleXMLElement $element, $value, $group = null)
+    {
+        if ($path = realpath(__DIR__ . '/../..')) {
+            Factory::getLanguage()->load('shackdefaultfiles',$path);
+        }
+
+        return parent::setup($element, $value, $group);
+    }
 
     /**
      * @inheritDoc
@@ -99,5 +131,41 @@ class JFormFieldCustomFooter extends ShackFormFieldBase
                 'goProUrl'      => $goProUrl
             ]
         );
+    }
+
+    /**
+     * @param ?string $path
+     *
+     * @return string
+     * @TODO: Doesn't seem to be useful
+     */
+    protected function getStyle(?string $path): string
+    {
+        if ($path && is_file($path)) {
+            return '<style>' . file_get_contents($path) . '</style>';
+        }
+
+        return '';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getLabel()
+    {
+        return '';
+    }
+
+    /**
+     * @param SimpleXMLElement $element
+     *
+     * @return ?string
+     */
+    public function getInputUsingCustomElement(SimpleXMLElement $element): ?string
+    {
+        $this->element = $element;
+        $this->setup($element, null);
+
+        return $this->getInput();
     }
 }
