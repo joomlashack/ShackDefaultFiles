@@ -45,7 +45,7 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
 <link href="<?php echo $footerCss; ?>" rel="stylesheet"/>
 <link href="<?php echo $adminCss; ?>" rel="stylesheet"/>
 <div class="<?php echo $class; ?>">
-    <div class="span-12">
+    <div class="span12 w-12">
         <?php
         if ($showGoProAd) :
             ?>
