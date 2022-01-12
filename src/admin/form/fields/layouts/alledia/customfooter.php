@@ -23,7 +23,6 @@
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Version;
 
 defined('_JEXEC') or die();
 
@@ -48,16 +47,13 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
     <div>
         <?php
         if ($showGoProAd) :
-            $linkIcon  = Version::MAJOR_VERSION < 4
-                ? '<i class="icon-publish"></i>'
-                : '';
             ?>
             <div class="gopro-ad">
                 <?php
                 echo HTMLHelper::_(
                     'link',
                     $goProUrl,
-                    $linkIcon . Text::_('SHACKDEFAULTFILES_GO_PRO'),
+                    Text::_('SHACKDEFAULTFILES_GO_PRO'),
                     'class="gopto-btn" target="_blank"'
                 );
                 ?>
