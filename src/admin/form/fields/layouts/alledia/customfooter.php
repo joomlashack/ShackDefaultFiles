@@ -93,22 +93,22 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
         </div>
 
         <div class="joomlashack-copyright">
-            &copy; <?php echo date('Y'); ?> Joomlashack.com. All rights reserved.
+            <?php echo '&copy; ' . date('Y'); ?> Joomlashack.com. All rights reserved.
         </div>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var footer = document.getElementsByClassName('joomlashack-footer')[0],
+        let footer = document.getElementsByClassName('joomlashack-footer')[0],
             parent = footer.parentElement;
 
-        function hasClass(elem, className) {
+        let hasClass = function (elem, className) {
             return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-        }
+        };
 
         if (hasClass(parent, 'controls')) {
-            var wrapper = document.getElementById('content');
+            let wrapper = document.getElementById('content');
 
             wrapper.parentNode.insertBefore(footer, wrapper.nextSibling);
         }
