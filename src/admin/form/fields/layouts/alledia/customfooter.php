@@ -23,6 +23,7 @@
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Version;
 
 defined('_JEXEC') or die();
 
@@ -40,7 +41,6 @@ $fromInstaller = $displayData['fromInstaller'];
 
 $footerCss = HTMLHelper::_('stylesheet', $media . '/field_customfooter.css', ['relative' => true, 'pathOnly' => true]);
 $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relative' => true, 'pathOnly' => true]);
-
 ?>
 <link href="<?php echo $footerCss; ?>" rel="stylesheet"/>
 <link href="<?php echo $adminCss; ?>" rel="stylesheet"/>
@@ -48,13 +48,16 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
     <div>
         <?php
         if ($showGoProAd) :
+            $linkIcon  = Version::MAJOR_VERSION < 4
+                ? '<i class="icon-publish"></i>'
+                : '';
             ?>
             <div class="gopro-ad">
                 <?php
                 echo HTMLHelper::_(
                     'link',
                     $goProUrl,
-                    '<i class="icon-publish"></i>' . Text::_('SHACKDEFAULTFILES_GO_PRO'),
+                    $linkIcon . Text::_('SHACKDEFAULTFILES_GO_PRO'),
                     'class="gopto-btn" target="_blank"'
                 );
                 ?>
@@ -103,7 +106,7 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
         let footer = document.getElementsByClassName('joomlashack-footer')[0],
             parent = footer.parentElement;
 
-        let hasClass = function (elem, className) {
+        let hasClass = function(elem, className) {
             return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
         };
 
