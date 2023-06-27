@@ -24,8 +24,14 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die();
+// phpcs:enable PSR1.Files.SideEffects
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 
+/**
+ * @property bool $fromInstaller
+ */
 class JFormFieldCustomFooter extends FormField
 {
     /**
@@ -55,12 +61,11 @@ class JFormFieldCustomFooter extends FormField
 
     /**
      * @inheritDoc
-     *
      */
-    public function setup(\SimpleXMLElement $element, $value, $group = null)
+    public function setup(SimpleXMLElement $element, $value, $group = null)
     {
         if ($path = realpath(__DIR__ . '/../..')) {
-            Factory::getLanguage()->load('shackdefaultfiles',$path);
+            Factory::getLanguage()->load('shackdefaultfiles', $path);
         }
 
         return parent::setup($element, $value, $group);

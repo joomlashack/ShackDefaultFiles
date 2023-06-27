@@ -58,11 +58,9 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
                 );
                 ?>
             </div>
-        <?php
-        endif;
+        <?php endif;
 
-        if ($jedurl) :
-            ?>
+        if ($jedurl) : ?>
             <div class="joomlashack-jedlink">
                 <?php
                 echo Text::_('SHACKDEFAULTFILES_LIKE_THIS_EXTENSION');
@@ -76,9 +74,7 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
                 echo '&nbsp;' . str_repeat("<i class=\"icon-star\"></i>", 5);
                 ?>
             </div>
-        <?php
-        endif;
-        ?>
+        <?php endif; ?>
         <div class="poweredby">
             Powered by
             <?php
