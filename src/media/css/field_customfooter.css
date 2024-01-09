@@ -13,11 +13,7 @@
 
 .joomlashack-footer .gopro-ad a.gopto-btn {
   border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
   display: inline-block;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: middle;
   text-decoration: none;
@@ -31,7 +27,6 @@
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   font-weight: 400;
   font-size: 14px;
-  -webkit-transition: background 0.2s ease-in-out;
   transition: background 0.2s ease-in-out;
 }
 
