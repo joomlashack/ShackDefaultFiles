@@ -95,17 +95,18 @@ $adminCss  = HTMLHelper::_('stylesheet', $media . '/admin-default.css', ['relati
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let footer = document.getElementsByClassName('joomlashack-footer')[0],
-            parent = footer.parentElement;
+        let footer    = document.getElementsByClassName('joomlashack-footer').item(0),
+            container = footer ? footer.parentElement : null,
+            wrapper   = null;
 
-        let hasClass = function(elem, className) {
-            return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-        };
+        if (container && container.classList.contains('controls')) {
+            wrapper = document.getElementById('content') || document.querySelector('.container-popup');
+        }
 
-        if (hasClass(parent, 'controls')) {
-            let wrapper = document.getElementById('content');
-
+        if (footer && wrapper) {
             wrapper.parentNode.insertBefore(footer, wrapper.nextSibling);
+        } else if (footer) {
+            footer.remove();
         }
     });
 </script>
